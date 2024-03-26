@@ -1,0 +1,17 @@
+<div hx-ext="ws" ws-connect="/1">
+  <form id="form" ws-send>
+    <input name="user_id">
+    <input name="room_id">
+    <button type="submit">click</button>
+  </form>
+  <div id="chat"></div>
+
+</div>
+
+<form hx-post="/join" hx-target="#game" hx-swap="innerHTML" hx-params="room_id" hx-ext='json-enc'>
+  <label for="room_id">Room ID:</label>
+  <input name="room_id" placeholder="quick_game" id="room_id_input">
+  <button type="submit">
+    Join
+  </button>
+</form>

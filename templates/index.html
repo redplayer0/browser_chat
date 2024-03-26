@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/morphdom-swap.js"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+  <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+  <title>Lite</title>
+</head>
+
+<body>
+
+  <div id="chatroom" class="chatroom">
+    <div id="lobby" class="lobby">
+      <form hx-post="/join" hx-target="#message_input" hx-swap="innerHTML" hx-params="room_id,room_count"
+        hx-ext='json-enc' _="on submit me.reset()">
+        <label for="room_count">Count:</label>
+        <input name="room_count" min="2" max="30" type="number" id="room_count_input"
+          _="on keypress if the event's keyCode is 13 halt the event">
+        <label for="room_id">Room ID:</label>
+        <input name="room_id" placeholder="quick_game" id="room_id_input"
+          _="on keypress if the event's keyCode is 13 halt the event">
+        <button type="submit">
+          Join
+        </button>
+      </form>
+    </div>
+    <div id="chat" class="chat">
+      <div id="history" class="history"></div>
+      <div id="message_input" class="message_input"></div>
+    </div>
+  </div>
+</body>
+
+</html>

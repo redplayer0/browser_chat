@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(10, 1fr);
+      grid-template-areas:
+        "lobby lobby"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "chat chat"
+        "message message";
+      height: 100vh;
+      margin: 0;
+    }
+
+    #lobby {
+      grid-area: lobby;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input {
+      margin-bottom: 10px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    #chat {
+      grid-area: chat;
+      overflow-y: scroll;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #message {
+      grid-area: message;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="lobby">
+    <div id="info"></div>
+    <form hx-post="/join" hx-target="#game" hx-swap="innerHTML" hx-params="room_id" hx-ext='json-enc'>
+      <label for="room_count">Count:</label>
+      <input name="room_count" min="2" max="30" type="number" id="room_count_input">
+      <label for="room_id">Room ID:</label>
+      <input name="room_id" placeholder="quick_game" id="room_id_input">
+      <button type="submit">
+        Join
+      </button>
+    </form>
+  </div>
+  <div id="chat"></div>
+  <div id="message"></div>
+  <div id="game"></div>
+</body>
+
+</html>
